@@ -12,35 +12,35 @@
  * UART.
  *
  ****************************************************************************/
-module UART_RX(clk, rst, EIGHT, PEN, OHEL, RX, CLR, k, 
-					DATA_OUT, OVF, FERR, PERR, RXRDY);
+module UART_RX(	clk, rst, EIGHT, PEN, OHEL, RX, CLR, k, 
+		DATA_OUT, OVF, FERR, PERR, RXRDY);
 //*****************************************************************************
-	input 					clk, rst, EIGHT, PEN, OHEL, CLR, RX;
-	input 		[18:0] 	k;
+	input 			clk, rst, EIGHT, PEN, OHEL, CLR, RX;
+	input 	    [18:0] 	k;
 	output wire [7:0] 	DATA_OUT;
-	output wire				OVF, FERR, PERR, RXRDY;
+	output wire		OVF, FERR, PERR, RXRDY;
 //*****************************************************************************
-	wire						BTU, START, DONE;
+	wire			BTU, START, DONE;
 //*****************************************************************************
-	RX_Controller RX_Controller(	.clk(clk), 		.rst(rst), 	 .k(k), 
-											.EIGHT(EIGHT), .PEN(PEN), 	 .RX(RX), 
-											.BTU(BTU), 		.DONE(DONE), .START(START) );
+	RX_Controller RX_Controller(	.clk(clk), 	.rst(rst), 	.k(k), 
+					.EIGHT(EIGHT), 	.PEN(PEN), 	.RX(RX), 
+					.BTU(BTU), 	.DONE(DONE), 	.START(START) );
 //*****************************************************************************
 	RX_DataPath RX_DataPath( .clk(clk), 
-									 .rst(rst), 
-									 .BTU(BTU), 
-									 .START(START), 
-									 .RX(RX), 
-									 .EIGHT(EIGHT),
-									 .PEN(PEN),
-									 .OHEL(OHEL),
-									 .DONE(DONE), 
-									 .CLR(CLR),
-									 .REMAP_OUT(DATA_OUT), 
-									 .RXRDY(RXRDY),
-									 .PERR(PERR), 
-									 .FERR(FERR), 
-									 .OVF(OVF) );
+				 .rst(rst), 
+				 .BTU(BTU), 
+				 .START(START),
+				 .RX(RX), 
+				 .EIGHT(EIGHT),
+				 .PEN(PEN),
+				 .OHEL(OHEL),
+				 .DONE(DONE), 
+				 .CLR(CLR),
+				 .REMAP_OUT(DATA_OUT), 
+				 .RXRDY(RXRDY),
+			         .PERR(PERR), 
+				 .FERR(FERR), 
+				 .OVF(OVF) );
 //*****************************************************************************
 endmodule
 
