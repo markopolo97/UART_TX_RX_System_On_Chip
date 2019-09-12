@@ -24,7 +24,7 @@ module AISO(clk, rst, RST_S);
 	
 		if(rst)		{Q_meta, Q_ok} <= {1'b0, 1'b0};
 		
-		else 			{Q_meta, Q_ok} <= {1'b1, Q_meta};
+		else 		{Q_meta, Q_ok} <= {1'b1, Q_meta};
 			
 	assign RST_S = (~Q_ok);
 		
